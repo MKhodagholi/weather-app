@@ -19,7 +19,7 @@
 }
 
 .light {
-  background-color: #0b77dd;
+  background-color: #1698c0;
   color: #fff;
 }
 
@@ -39,17 +39,18 @@
   border: none;
   margin: 1rem 0;
   font-size: 1.5rem;
-  border-bottom: 1px solid #fff;
   width: 100%;
 }
 
 .dark .search-input {
   color: white;
   background-color: #333;
+  border-bottom: 1px solid #fff;
 }
 
 .light .search-input {
   background-color: #fff;
+  border-bottom: 3px solid #333;
 }
 
 .search-button {
@@ -62,6 +63,85 @@
   width: 100%;
 }
 
+.app-result {
+  width: 80%;
+}
+
+.app-result hr {
+  border: 1px solid #ccc;
+}
+
+.icon {
+  width: 50px;
+  margin: 2rem auto;
+}
+
+.name-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.date {
+  font-weight: 300;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.temp-part {
+  margin-top: 1rem;
+}
+
+.temp-part h3 {
+  margin-bottom: 0.3rem;
+}
+
+.light h3 {
+  color: #333;
+}
+
+.weather {
+  color: #00ff40;
+}
+
+.dark .hot {
+  color: #f10808;
+}
+
+.light .hot {
+  color: rgb(167, 47, 87);
+}
+
+.cold {
+  color: rgb(0, 217, 255);
+}
+
+.theme-switcher {
+  position: fixed;
+  left: 50px;
+  top: 50px;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.dark .theme-switcher {
+  background-color: #fff;
+  color: #000;
+  box-shadow: inset 0 0 4px 4px rgba(0, 0, 0, 1);
+}
+
+.light .theme-switcher {
+  background-color: #666;
+  color: #fff;
+  box-shadow: inset 0 0 4px 4px rgb(0, 0, 0, 0.5);
+}
+
 @media (min-width: 768px) {
   .app-search {
     display: flex;
@@ -69,5 +149,11 @@
     justify-content: center;
     align-items: center;
     width: 40%;
+  }
+  .app-result {
+    width: 40%;
+  }
+  .date {
+    font-size: 2.5rem;
   }
 }
