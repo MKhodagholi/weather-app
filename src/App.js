@@ -21,12 +21,14 @@ const App = () => {
   const getInformation = async () => {
     const res = await fetch(
       `https://www.metaweather.com/api/location/search/?query=${city}`
-    ).json();
-    const woeid = await res[0].woeid;
+    );
+    const woeidJson = await res.json();
+    const woeid = await woeidJson[0].woeid;
     const resCity = await fetch(
       `https://www.metaweather.com/api/location/${woeid}/`
     ).json();
-    const data = await resCity.consolidated_weather[0];
+    const resCityJson = await resCity.json();
+    const data = await resCityJson.consolidated_weather[0];
     const information = {
       nameCity: data.title,
       time: data.created,
