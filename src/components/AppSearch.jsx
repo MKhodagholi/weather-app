@@ -11,7 +11,11 @@ const AppSearch = ({ changeCityHandler, getInformation, city }) => {
         className={classes["search-input"]}
         placeholder="Search By City Name"
       />
-      <button onClick={getInformation} className={classes["search-button"]}>
+      <button
+        onClick={getInformation}
+        className={classes["search-button"]}
+        disabled={city === ""}
+      >
         Search
       </button>
     </div>
