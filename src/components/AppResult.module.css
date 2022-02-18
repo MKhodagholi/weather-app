@@ -1,0 +1,64 @@
+.app-result {
+  width: 80%;
+}
+
+.app-result hr {
+  border: 1px solid #ccc;
+}
+
+.icon {
+  width: 50px;
+  margin: 2rem auto;
+}
+
+.name-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.date {
+  font-weight: 300;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.temp-part {
+  margin-top: 1rem;
+}
+
+.temp-part h3 {
+  margin-bottom: 0.3rem;
+}
+
+.light h3 {
+  color: #333;
+}
+
+.weather {
+  color: #00ff40;
+}
+
+.dark .hot {
+  color: #f10808;
+}
+
+.light .hot {
+  color: rgb(167, 47, 87);
+}
+
+.cold {
+  color: rgb(0, 217, 255);
+}
+
+@media (min-width: 768px) {
+  .app-result {
+    width: 40%;
+  }
+  .date {
+    font-size: 2.5rem;
+  }
+}
