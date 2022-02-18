@@ -1,5 +1,7 @@
 import React from "react";
 
+import classes from "./AppSearch.module.css";
+
 const AppSearch = ({ changeCityHandler, getInformation, city }) => {
   return (
     <div className={classes["app-search"]}>
