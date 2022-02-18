@@ -4,11 +4,13 @@ import dateFormat from "dateformat";
 import classes from "./App.module.css";
 import AppSearch from "./components/AppSearch";
 import AppResult from "./components/AppResult";
+import Loading from "./components/Loading";
 
 const App = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [city, setCity] = useState("");
   const [information, setInformation] = useState(null);
+  const [isLoaing, setIsLoading] = useState(false);
 
   const changeCityHandler = (e) => {
     setCity(e.target.value);
@@ -19,6 +21,7 @@ const App = () => {
   };
 
   const getInformation = async () => {
+    setIsLoading(true);
     const res = await fetch(
       `https://www.metaweather.com/api/location/search/?query=${city}`
     );
@@ -40,17 +43,24 @@ const App = () => {
     };
     setInformation(information);
     setCity("");
+    setIsLoading(false);
   };
 
   return (
     <div className={`${isDark ? classes.dark : classes.light} ${classes.app}`}>
       <h1 className={classes.title}>Weather App</h1>
-      <AppSearch
-        changeCityHandler={changeCityHandler}
-        getInformation={getInformation}
-        city={city}
-      />
-      {information && <AppResult information={information} />}
+      {isLoaing ? (
+        <Loading />
+      ) : (
+        <>
+          <AppSearch
+            changeCityHandler={changeCityHandler}
+            getInformation={getInformation}
+            city={city}
+          />
+          {information && <AppResult information={information} />}
+        </>
+      )}
       <button
         className={classes["theme-switcher"]}
         onClick={changeThemeHandler}
