@@ -24,6 +24,7 @@ const App = () => {
 
   const getInformation = async () => {
     setIsLoading(true);
+    setError("");
     try {
       const res = await fetch(`api/location/search/?query=${city}`);
       const woeidJson = await res.json();
