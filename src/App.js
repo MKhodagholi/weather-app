@@ -5,6 +5,7 @@ import classes from "./App.module.css";
 import AppSearch from "./components/AppSearch";
 import AppResult from "./components/AppResult";
 import Loading from "./components/Loading";
+import Error from "./components/Error";
 
 const App = () => {
   const [isDark, setIsDark] = useState(true);
@@ -47,6 +48,8 @@ const App = () => {
       }, 15000);
     } catch (err) {
       setError(true);
+      setCity("");
+      setIsLoading(false);
     }
   };
 
@@ -65,7 +68,7 @@ const App = () => {
           {information && <AppResult information={information} />}
         </>
       )}
-      {error && <Error />}
+      {error && <Error errorText={"City Is Not Found"} />}
       <button
         className={classes["theme-switcher"]}
         onClick={changeThemeHandler}
