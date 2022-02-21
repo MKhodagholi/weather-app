@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dateFormat from "dateformat";
 
 import classes from "./App.module.css";
@@ -9,6 +9,7 @@ import Loading from "./components/Loading";
 const App = () => {
   const [isDark, setIsDark] = useState(true);
   const [city, setCity] = useState("");
+  const [error, setError] = useState("");
   const [information, setInformation] = useState(null);
   const [isLoaing, setIsLoading] = useState(false);
 
@@ -23,19 +24,14 @@ const App = () => {
   const getInformation = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(
-        `https://www.metaweather.com/api/location/search/?query=${city}`,
-        { mode: "no-cors" }
-      );
+      const res = await fetch(`api/location/search/?query=${city}`);
       const woeidJson = await res.json();
       const woeid = await woeidJson[0].woeid;
-      const resCity = await fetch(
-        `https://www.metaweather.com/api/location/${woeid}/`
-      ).json();
+      const resCity = await fetch(`/api/location/${woeid}/`);
       const resCityJson = await resCity.json();
       const data = await resCityJson.consolidated_weather[0];
       const information = {
-        nameCity: data.title,
+        nameCity: resCityJson.title,
         time: data.created,
         weather_name: data.weather_state_name,
         state_abbr: data.weather_state_abbr,
@@ -50,7 +46,7 @@ const App = () => {
         setInformation(null);
       }, 15000);
     } catch (err) {
-      console.log(err);
+      setError(true);
     }
   };
 
@@ -69,6 +65,7 @@ const App = () => {
           {information && <AppResult information={information} />}
         </>
       )}
+      {error && <Error />}
       <button
         className={classes["theme-switcher"]}
         onClick={changeThemeHandler}
