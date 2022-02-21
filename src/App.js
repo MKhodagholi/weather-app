@@ -28,6 +28,7 @@ const App = () => {
     try {
       const res = await fetch(`api/location/search/?query=${city}`);
       const woeidJson = await res.json();
+      console.log(woeidJson);
       const woeid = await woeidJson[0].woeid;
       const resCity = await fetch(`/api/location/${woeid}/`);
       const resCityJson = await resCity.json();
@@ -48,6 +49,7 @@ const App = () => {
         setInformation(null);
       }, 15000);
     } catch (err) {
+      console.log(err);
       setError(true);
       setCity("");
       setIsLoading(false);
