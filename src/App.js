@@ -26,7 +26,7 @@ const App = () => {
     setIsLoading(true);
     setError("");
     try {
-      const res = await fetch(`api/location/search/?query=${city}`);
+      const res = await fetch(`/api/location/search/?query=${city}`);
       const woeidJson = await res.json();
       console.log(woeidJson);
       const woeid = await woeidJson[0].woeid;
